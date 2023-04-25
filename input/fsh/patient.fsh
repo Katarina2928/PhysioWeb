@@ -1,12 +1,29 @@
 
-Profile: MyPatient
+Profile: PhysioWebPatient
 Parent: Patient
-Description: "An example profile of the Patient resource."
+Id: physio-patient
+Description: "Profile for Patient in PhysioWeb Project."
 
-// Wie defeniere ich mehr Ids bei Instance?
-* identifier 1..* /*SU Identifier "An identifier for this patient."*/
+* identifier ^slicing.rules = #open
+* identifier ^slicing.discriminator.type = #value
+* identifier ^slicing.discriminator.path = "type.coding.code"
+* identifier ^slicing.ordered = false 
+* identifier contains socialSecurityNumber 0..1 and localPatientId 0..1
+//SVN
+* identifier[socialSecurityNumber].type.coding.system = "http://terminology.hl7.org/CodeSystem/v2-0203" (exactly)
+* identifier[socialSecurityNumber].type.coding.code = #SS (exactly) //Resolved value "HL7V2" is not a valid URI.
+* identifier[socialSecurityNumber].type.coding.display = "Social Security Number" (exactly)
+* identifier[socialSecurityNumber].system 1..1
+* identifier[socialSecurityNumber].system = "urn:oid:1.2.40.0.10.1.4.3.1" (exactly)
+* identifier[socialSecurityNumber].system ^short = "OID for the Social Security Number in Austria"
+* identifier[socialSecurityNumber].assigner.display = "Dachverband der österreichischen Sozialversicherungsträger" (exactly)
+//Application Identifier
+* identifier[localPatientId].type.coding.system = "http://terminology.hl7.org/CodeSystem/v2-0203" (exactly)
+* identifier[localPatientId].type.coding.code = #CAAI (exactly)
+* identifier[localPatientId].type.coding.display = "Consumer Application Account Identifier" (exactly)
+* identifier[localPatientId].system 0..1 //1..1?
+* identifier[localPatientId].system ^short = "Application Identifier."
 
-//* active 0..1 ?! SU boolean "Whether this patient's record is in active use" "Whether this patient record is in active use. \nMany systems use this property to mark as non-current patients, such as those that have not been seen for a period of time based on an organization's business rules.\n\nIt is often used to filter patient lists to exclude inactive patients\n\nDeceased patients may also be marked as inactive for the same reasons, but may be active for some time after death."
 
 * active 0..1 ?! SU //boolean "Whether this patient's record is in active use." Warum 'boolean als extraneous input bezeichnet wird?'
 * active ^requirements = "Need to be able to mark a patient record as not to be used because it was created in error."
@@ -14,32 +31,22 @@ Description: "An example profile of the Patient resource."
 * active ^mustSupport = false
 
 
-// MS SU oder SU MS, kann man die beide glichzeitig definieren?
-* name 1..* MS //SU HumanName "A name associated with the patient." 
+* name 1..* MS 
 * name ^comment = "A patient may have multiple names with different uses or applicable periods, but obligatory at least one."
 
-* telecom 0..* SU //*ContactPoint "A contact detail for the individual."
+* telecom 0..* SU 
 
-* gender 1..1 SU //code "male | female | other | unknown"
+* gender 1..1 MS //"male | female | other | unknown"
 * gender from http://hl7.org/fhir/ValueSet/administrative-gender|5.0.0 (required)
-/* ???
-* gender ^binding.extension[0].url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"
-* gender ^binding.extension[=].valueString = "AdministrativeGender"
-* gender ^binding.extension[+].url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding"
-* gender ^binding.extension[=].valueBoolean = true
-* gender ^binding.description = "The gender of a person used for administrative purposes."
-*/
 
 * birthDate 0..1 SU //date
 
 * deceased[x] 0..1 ?! SU //boolean or dateTime
 
-* address 0..* SU //Address
+* address 0..* SU //Address 
 
 * maritalStatus 0..1 //CodeableConcept "Marital (civil) status of a patient."
 * maritalStatus from http://hl7.org/fhir/ValueSet/marital-status (extensible)
-
-* multipleBirth[x] 0..1 //boolean or integer "Whether patient is part of a multiple birth."
 
 * photo 0..* //Attachment "Image of the patient."
 
@@ -76,7 +83,7 @@ Expression: "name.exists() or telecom.exists() or address.exists() or organizati
 Mapping: interface
 Id: interface
 Title: "Interface Pattern"
-Source: MyPatient
+Source: PhysioWebPatient
 Target: "http://hl7.org/fhir/interface"
 * -> "ParticipantLiving"
 * identifier -> "Participant.identifier"
@@ -92,58 +99,49 @@ Target: "http://hl7.org/fhir/interface"
 Mapping: loinc
 Id: loinc
 Title: "LOINC code for the element"
-Source: MyPatient
+Source: PhysioWebPatient
 Target: "http://loinc.org"
 * birthDate -> "21112-8"
 
-/*
-// Slicing the identifier
-* identifier ^slicing.discriminator.type = #value
-* identifier ^slicing.discriminator.path = "type.assigner.reference"
-* identifier ^slicing.rules = #openAtEnd
-* identifier contains svnr 1..1
-
-//define what svnr looks like
-* identifier[svnr].type.coding.system = "http://terminology.hl7.org/CodeSystem/v2-0203"
-* identifier[svnr].type.coding.code = HL7V2#SS (exactly)
-* identifier[svnr].type.coding.display = "Social Security Number" (exactly)
-* identifier[svnr].system 1..1
-* identifier[svnr].system = "urn:oid:1.3.4.5.5.6.7..8" (exactly)
-* identifier[svnr].system ^short = "OID for the Social Security Number in Austria"
-* identifier[svnr].assigner.display = "Dachverband der Ö SVN" (exactly)
-* identifier[svnr].assigner.reference = "https://wwww.gesundhei.gv.at/OID Frontebd/..."
-*/
 
 Instance: PatientExample
-InstanceOf: MyPatient
-Description: "An example of a patient with a license to krill."
-* identifier.use = #usual
-* identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#MR
-* identifier.system = "urn:oid:1.2.36.146.595.217.0.1"
-* identifier.value = "12345"
-* identifier.period.start = "2001-05-06"
-* identifier.assigner.display = "Acme Healthcare"
+InstanceOf: PhysioWebPatient
+Description: "An example of a patient from PhysioWebPatient."
 
-/*
-* identifier[svnr].use = #official
-* identifier[svnr].type = "http://terminology.hl7.org/CodeSystem/v2-0203"
-* identifier[svnr].system = "urn:oid:1.3.4.5.5.6.7..8"
-* identifier[svnr].value = "1234556"
-* identifier[svnr].period.start = "2001-05-06"
-* identifier[svnr].assigner.display = "Dachverband der Ö SVN"
-*/
+* identifier[socialSecurityNumber].use = #usual
+* identifier[socialSecurityNumber].type.coding.system = "http://terminology.hl7.org/CodeSystem/v2-0203" (exactly)
+* identifier[socialSecurityNumber].type.coding.code = #SS (exactly) //Resolved value "HL7V2" is not a valid URI.
+* identifier[socialSecurityNumber].type.coding.display = "Social Security Number" (exactly)
+//* identifier[socialSecurityNumber].system = "urn:oid:1.2.36.146.595.217.0.1"
+* identifier[socialSecurityNumber].value = "894523"
+* identifier[socialSecurityNumber].period.start = "2001-05-06"
+* identifier[socialSecurityNumber].assigner.display = "Dachverband der österreichischen Sozialversicherungsträger"
+
+
+* identifier[localPatientId].use = #secondary
+* identifier[localPatientId].type.coding.system = "http://terminology.hl7.org/CodeSystem/v2-0203" (exactly)
+* identifier[localPatientId].type.coding.code = #CAAI (exactly)
+* identifier[localPatientId].type.coding.display = "Consumer Application Account Identifier" (exactly)
+//* identifier[localPatientId].system = "urn:oid:1.3.4.5.5.6.7..8"
+* identifier[localPatientId].value = "1"
+* identifier[localPatientId].period.start = "2001-05-06"
+* identifier[localPatientId].assigner.display = "Application Identifier."
+
+* active = true
 
 * name
-  * given[0] = "James"
-  * family = "Pond"
+  * given[0] = "Peter"
+  * family = "Broli"
 
 * telecom[0].use = #home
 * telecom[+].system = #phone
 * telecom[=].value = "(03) 5555 6473"
-* telecom[=].use = #work
+* telecom[=].use = #mobile
 * telecom[=].rank = 1
 * telecom[+].system = #phone
 * telecom[=].value = "(03) 3410 5613"
+* telecom[=].use = #work
+* telecom[=].rank = 2
 
 * gender = #male
 
@@ -153,12 +151,22 @@ Description: "An example of a patient with a license to krill."
 
 * address.use = #home
 * address.type = #both
-* address.text = "534 Erewhon St PeasantVille, Rainbow, Vic  3999"
-* address.line = "534 Erewhon St"
-* address.city = "PleasantVille"
-* address.district = "Rainbow"
-* address.state = "Vic"
-* address.postalCode = "3999"
+* address.text = "Tuchlauben 18, Vienna, Vienna 1010"
+* address.line = "Tuchlauben 18"
+* address.city = "Vienna"
+* address.district = "Austria"
+* address.state = "Vienna"
+* address.postalCode = "1010"
 * address.period.start = "1974-12-25"
+
+* maritalStatus.coding.system = "https://www.hl7.org/fhir/r4/valueset-marital-status.html"
+* maritalStatus.coding.code = #M
+* maritalStatus.coding.display = "Married"
+
+* communication.language.coding.system = "urn:ietf:bcp:47"
+* communication.language.coding.code = #de-AT
+* communication.language.coding.display = "German (Austria)"
+
+* generalPractitioner = Reference(PractitionerExample) 
 
 * managingOrganization = Reference(Organization/1)

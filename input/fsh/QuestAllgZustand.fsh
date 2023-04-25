@@ -1,3 +1,4 @@
+/*
 Instance: quest-allg-zustand // Profile?
 InstanceOf: Bundle // Parent?
 * type = #transaction
@@ -149,8 +150,10 @@ Usage: #inline
 * name = "Frequency"
 * status = #active
 * immutable = true  // Indicates whether or not any change to the content logical definition may occur
-* compose.include.concept[0] = #vs1NI-1 "Never"
+* compose.include.extension[0].url = "code"
+* compose.include.extension[0].valueCode = #vs1NI-1 "Never"
 * compose.include.concept[+] = #vs1NI-2 "Rarely"
 * compose.include.concept[+] = #vs1NI-3 "Sometimes"
 * compose.include.concept[+] = #vs1NI-4 "Often"
 * compose.include.concept[+] = #vs1NI-5 "Always"
+*/
