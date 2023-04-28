@@ -188,7 +188,7 @@ Alias: $condition-category = http://terminology.hl7.org/CodeSystem/condition-cat
 Alias: $sct = http://snomed.info/sct
 
 Instance: ConditionExample
-InstanceOf: Condition
+InstanceOf: PhysioWebCondition
 Description: "An example of a condition for PhysioWeb."
 * clinicalStatus = $condition-clinical#active
 * verificationStatus = $condition-ver-status#confirmed
