@@ -1,4 +1,4 @@
-/*
+
 Instance: quest-allg-zustand // Profile?
 InstanceOf: Bundle // Parent?
 * type = #transaction
@@ -14,7 +14,7 @@ InstanceOf: Bundle // Parent?
 * entry[=].request.url = "http://hl7.org/fhir/ValueSet/vs1NI"
 
 // gar nicht-sehr stark
-* entry[+].fullUrl = "http://hl7.org/fhirc/ValueSet/vs2NS" 
+* entry[+].fullUrl = "http://hl7.org/fhir/ValueSet/vs2NS" 
 * entry[=].resource = vs2NS
 * entry[=].request.method = #PUT
 * entry[=].request.url = "http://hl7.org/fhir/ValueSet/vs2NS"
@@ -62,11 +62,11 @@ Usage: #inline
 * item[=].type = #group
 * item[=].required = true
 
-// Subskala Symptome
+// 1. Subskala Symptome
 * item[=].item[0].linkId = "1.1"
-* item[=].definition = "http://loinc.org/rdf#64750-3"
-* item[=].text = "Severity of symptoms"
-* item[=].type = #group
+* item[=].item[=].definition = "http://loinc.org/rdf#64750-3"
+* item[=].item[=].text = "Severity of symptoms"
+* item[=].item[=].type = #group
 // * item[=].required = true
 
 // 1 Spüren Sie ein Reiben, hören Sie ein Klicken, Knirschen, Knacken oder ein anderes Geräusch im Gelenk?
@@ -101,7 +101,7 @@ Usage: #inline
 
 
 
-// Subskala Schmerz
+// 2. Subskala Schmerz
 * item[=].item[+].linkId = "1.2"
 * item[=].item[=].definition = "http://loinc.org/rdf#80316-3"
 * item[=].item[=].text = "Pain scale"
@@ -139,21 +139,110 @@ Usage: #inline
 
 
 
-// Subskala Aktivitäten des alltäglichen Lebens
+// 3. Subskala Aktivitäten des alltäglichen Lebens
+* item[=].item[+].linkId = "1.3"
+* item[=].item[=].definition = "http://loinc.org/rdf#72095-3"
+* item[=].item[=].text = "Activities of daily living score"
+* item[=].item[=].type = #group
+
+// 1&2 Schwierigkeiten bei Treppen hinaufsteigen und hinunterstiegen?
+* item[=].item[=].item[0].linkId = "1.3.1"
+* item[=].item[=].item[=].text = "Difficulties climbing up and down stairs?"
+* item[=].item[=].item[=].type = #choice
+* item[=].item[=].item[=].answerValueSet = "http://hl7.org/fhir/ValueSet/vs3KG"
+
+// 5 Sich bücken/einen Gegenstand vom Boden aufheben?
+* item[=].item[=].item[+].linkId = "1.3.2"
+* item[=].item[=].item[=].text = "Difficulty bending down/picking up an object from the floor?"
+* item[=].item[=].item[=].type = #choice
+* item[=].item[=].item[=].answerValueSet = "http://hl7.org/fhir/ValueSet/vs3KG"
+
+// 13 Einsteigen in die Badewanne – Aussteigen aus der Badewanne?
+* item[=].item[=].item[+].linkId = "1.3.3"
+* item[=].item[=].item[=].text = "Difficulties getting into the bathtub - getting out of the bathtub?"
+* item[=].item[=].item[=].type = #choice
+* item[=].item[=].item[=].answerValueSet = "http://hl7.org/fhir/ValueSet/vs3KG"
+
+// 17 Leichte Hausarbeit verrichteten (Kochen, Staub wischen...)?
+* item[=].item[=].item[+].linkId = "1.3.4"
+* item[=].item[=].item[=].text = "Difficulty doing light housework (cooking, dusting...)?"
+* item[=].item[=].item[=].type = #choice
+* item[=].item[=].item[=].answerValueSet = "http://hl7.org/fhir/ValueSet/vs3KG"
+
+// 16 Schwere Hausarbeit verrichteten (Kisten tragen, Böden schrubben...)?
+* item[=].item[=].item[+].linkId = "1.3.5"
+* item[=].item[=].item[=].text = "Difficulty doing heavy housework (carrying boxes, scrubbing floors...)?"
+* item[=].item[=].item[=].type = #choice
+* item[=].item[=].item[=].answerValueSet = "http://hl7.org/fhir/ValueSet/vs3KG"
+
+// Einkaufen (im Supermarkt/Einkaufszentrum)? 
+* item[=].item[=].item[+].linkId = "1.3.6"
+* item[=].item[=].item[=].text = "Difficulties with shopping (in the supermarket/shopping centre)?"
+* item[=].item[=].item[=].type = #choice
+* item[=].item[=].item[=].answerValueSet = "http://hl7.org/fhir/ValueSet/vs3KG"
+
 
 
 // nie-immer
 Instance: vs1NI
 InstanceOf: ValueSet
 Usage: #inline
-* url = "http://hl7.org/fhir/AnswerList/vs1NI"
+* url = "http://hl7.org/fhir/ValueSet/vs1NI"
 * name = "Frequency"
 * status = #active
-* immutable = true  // Indicates whether or not any change to the content logical definition may occur
-* compose.include.extension[0].url = "code"
-* compose.include.extension[0].valueCode = #vs1NI-1 "Never"
-* compose.include.concept[+] = #vs1NI-2 "Rarely"
-* compose.include.concept[+] = #vs1NI-3 "Sometimes"
-* compose.include.concept[+] = #vs1NI-4 "Often"
-* compose.include.concept[+] = #vs1NI-5 "Always"
-*/
+* compose.include.system = "http://loinc.org"
+
+* compose.include.concept[0].code = #LA6270-8
+* compose.include.concept[=].display = "Never"
+* compose.include.concept[+].code = #LA10066-1
+* compose.include.concept[=].display = "Rarely"
+* compose.include.concept[+].code = #LA10082-8
+* compose.include.concept[=].display = "Sometimes"
+* compose.include.concept[+].code = #LA10044-8
+* compose.include.concept[=].display = "Often"
+* compose.include.concept[+].code = #LA9933-8
+* compose.include.concept[=].display = "Always" 
+
+
+
+// gar nicht-sehr stark
+Instance: vs2NS
+InstanceOf: ValueSet
+Usage: #inline
+* url = "http://hl7.org/fhir/ValueSet/vs2NS"
+* name = "Level of strength"
+* status = #active
+* compose.include.system = "http://loinc.org"
+
+* compose.include.concept[0].code = #LA6568-5
+* compose.include.concept[=].display = "Not at all"
+* compose.include.concept[+].code = #LA13940-4
+* compose.include.concept[=].display = "A little"
+* compose.include.concept[+].code = #LA28439-0
+* compose.include.concept[=].display = "Rather"
+* compose.include.concept[+].code = #LA15550-9
+* compose.include.concept[=].display = "Much"
+* compose.include.concept[+].code = #LA28441-6
+* compose.include.concept[=].display = "Very strong"
+
+
+
+// keine-sehr große
+Instance: vs3KG
+InstanceOf: ValueSet
+Usage: #inline
+* url = "http://hl7.org/fhir/ValueSet/vs3KG"
+* name = "Level of severity"
+* status = #active
+* compose.include.system = "http://loinc.org"
+
+* compose.include.concept[0].code = #LA137-2
+* compose.include.concept[=].display = "None"
+* compose.include.concept[+].code = #LA6752-5
+* compose.include.concept[=].display = "Mild"
+* compose.include.concept[+].code = #LA6751-7
+* compose.include.concept[=].display = "Moderate"
+* compose.include.concept[+].code = #LA6750-9
+* compose.include.concept[=].display = "Severe"
+* compose.include.concept[+].code = #LA13958-6
+* compose.include.concept[=].display = "Very severe"
