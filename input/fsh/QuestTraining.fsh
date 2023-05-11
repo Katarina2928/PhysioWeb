@@ -83,7 +83,7 @@ InstanceOf: ValueSet
 
 
 
-/*
+
 Instance: QuestResponseTraining
 InstanceOf: QuestionnaireResponse
 * contained[0] = PatientExample
@@ -91,10 +91,24 @@ InstanceOf: QuestionnaireResponse
 * questionnaire = "urn:uuid:95eaedf7-8a24-478a-8300-39acc44c749c"
 * status = #completed
 
-* item.answer.item[0].linkId = "1"
-* item.answer.item[=].answer.valueCoding = http://hl7.org/fhir/AnswerList/goodbad#LA8967-7
-* item.answer.item[+].linkId = "2"
-* item.answer.item[=].answer.value = "Bla bls ls"
-*/
+* item[0].linkId = "1"
+* item[=].item[0].linkId = "1.1"
+* item[=].item[=].answer.valueCoding.system = "http://hl7.org/fhir/AnswerList/goodbad"
+* item[=].item[=].answer.valueCoding.code = #LA8967-7
+* item[=].item[=].answer.valueCoding.display = "Good"
+* item[=].item[+].linkId = "1.2"
+* item[=].item[=].text = "Übung war okey!!!"
 
+* item[=].item[+].linkId = "2.1"
+* item[=].item[=].answer.valueCoding.system = "http://hl7.org/fhir/AnswerList/goodbad"
+* item[=].item[=].answer.valueCoding.code = #LA8967-7
+* item[=].item[=].answer.valueCoding.display = "Good"
+* item[=].item[+].linkId = "2.2"
+* item[=].item[=].text = "Übung war okey!!!"
 
+* item[=].item[+].linkId = "3.1"
+* item[=].item[=].answer.valueCoding.system = "http://hl7.org/fhir/AnswerList/goodbad"
+* item[=].item[=].answer.valueCoding.code = #LA8967-7
+* item[=].item[=].answer.valueCoding.display = "Good"
+* item[=].item[+].linkId = "3.2"
+* item[=].item[=].text = "Übung war okey!!!"
