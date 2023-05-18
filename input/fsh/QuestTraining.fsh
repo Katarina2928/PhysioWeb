@@ -17,19 +17,12 @@ InstanceOf: Questionnaire
 * item[=].item[=].code = #28978002
 * item[=].item[=].text = "Post-exercise state"
 * item[=].item[=].type = #choice
-* item[=].item[=].answerValueSet = "http://hl7.org/fhir/ValueSet/goodbad"
+* item[=].item[=].answerValueSet = "https://fhir.loinc.org/ValueSet/?url=http://loinc.org/vs/LL1012-5"
 
 * item[=].item[+].linkId = "1.2"
 * item[=].item[=].text = "Comments on the progress of the exercises/description of sensation"
 * item[=].item[=].type = #text
 
-/*
-* item[+].linkId = "2"
-* item[=].definition = "http://snomed.info/sct"
-* item[=].code = #LG41761-4
-* item[=].text = "Exercise/Activity" 
-* item[=].type = #group
-*/
 
 // 2. Übung
 * item[=].item[+].linkId = "2.1"
@@ -37,7 +30,7 @@ InstanceOf: Questionnaire
 * item[=].item[=].code = #28978002
 * item[=].item[=].text = "Post-exercise state"
 * item[=].item[=].type = #choice
-* item[=].item[=].answerValueSet = "http://hl7.org/fhir/ValueSet/goodbad"
+* item[=].item[=].answerValueSet = "https://fhir.loinc.org/ValueSet/?url=http://loinc.org/vs/LL1012-5"
 
 * item[=].item[+].linkId = "2.2"
 * item[=].item[=].text = "Comments on the progress of the exercises/description of sensation"
@@ -50,16 +43,20 @@ InstanceOf: Questionnaire
 * item[=].item[=].code = #28978002
 * item[=].item[=].text = "Post-exercise state"
 * item[=].item[=].type = #choice
-* item[=].item[=].answerValueSet = "http://hl7.org/fhir/ValueSet/goodbad"
+* item[=].item[=].answerValueSet = "https://fhir.loinc.org/ValueSet/?url=http://loinc.org/vs/LL1012-5"
 
 * item[=].item[+].linkId = "3.2"
 * item[=].item[=].text = "Comments on the progress of the exercises/description of sensation"
 * item[=].item[=].type = #text
 
+/*
+Note: Es gibt 2 Möglichkeiten bei ValueSet:
+- Nutzung des offiziellen Links von Loinc: https://fhir.loinc.org/ValueSet/?url=http://loinc.org/vs/LL1012-5
+- Definition eigens ValueSet mit code von Loinc: http://hl7.org/fhir/ValueSet/goodbad
+*/
 
 
-
-
+/*
 Instance: goodbad
 InstanceOf: ValueSet
 * url = "http://hl7.org/fhir/AnswerList/goodbad"
@@ -80,7 +77,7 @@ InstanceOf: ValueSet
 
 * compose.include.concept[+].code = #LA8969-3
 * compose.include.concept[=].display = "Poor"
-
+*/
 
 
 
@@ -93,22 +90,25 @@ InstanceOf: QuestionnaireResponse
 
 * item[0].linkId = "1"
 * item[=].item[0].linkId = "1.1"
-* item[=].item[=].answer.valueCoding.system = "http://hl7.org/fhir/AnswerList/goodbad"
+* item[=].item[=].text = "Post-exercise state"
+* item[=].item[=].answer.valueCoding.system = "https://fhir.loinc.org/ValueSet/?url=http://loinc.org/vs/LL1012-5"
 * item[=].item[=].answer.valueCoding.code = #LA8967-7
 * item[=].item[=].answer.valueCoding.display = "Good"
 * item[=].item[+].linkId = "1.2"
-* item[=].item[=].text = "Übung war okey!!!"
+* item[=].item[=].text = "Übung war okey."
 
 * item[=].item[+].linkId = "2.1"
-* item[=].item[=].answer.valueCoding.system = "http://hl7.org/fhir/AnswerList/goodbad"
-* item[=].item[=].answer.valueCoding.code = #LA8967-7
-* item[=].item[=].answer.valueCoding.display = "Good"
+* item[=].item[=].text = "Post-exercise state"
+* item[=].item[=].answer.valueCoding.system = "https://fhir.loinc.org/ValueSet/?url=http://loinc.org/vs/LL1012-5"
+* item[=].item[=].answer.valueCoding.code = #LA8969-3
+* item[=].item[=].answer.valueCoding.display = "Poor"
 * item[=].item[+].linkId = "2.2"
-* item[=].item[=].text = "Übung war okey!!!"
+* item[=].item[=].text = "Habe Schmerzen gehabt."
 
 * item[=].item[+].linkId = "3.1"
-* item[=].item[=].answer.valueCoding.system = "http://hl7.org/fhir/AnswerList/goodbad"
-* item[=].item[=].answer.valueCoding.code = #LA8967-7
-* item[=].item[=].answer.valueCoding.display = "Good"
+* item[=].item[=].text = "Post-exercise state"
+* item[=].item[=].answer.valueCoding.system = "https://fhir.loinc.org/ValueSet/?url=http://loinc.org/vs/LL1012-5"
+* item[=].item[=].answer.valueCoding.code = #LA9206-9
+* item[=].item[=].answer.valueCoding.display = "Excellent"
 * item[=].item[+].linkId = "3.2"
-* item[=].item[=].text = "Übung war okey!!!"
+* item[=].item[=].text = "Es ist sehr gut gelaufen."
