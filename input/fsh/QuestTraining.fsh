@@ -13,39 +13,57 @@ InstanceOf: Questionnaire
 
 // 1. Übung
 * item[=].item[0].linkId = "1.1"
+* item[=].item[=].definition = "http://snomed.info/sct"
+* item[=].item[=].code = #9251003
+* item[=].item[=].text = "Jumping"
+* item[=].item[=].type = #display
+
+* item[=].item[+].linkId = "1.2"
 * item[=].item[=].definition = "http://loinc.org/rdf"
 * item[=].item[=].code = #28978002
 * item[=].item[=].text = "Post-exercise state"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerValueSet = "https://fhir.loinc.org/ValueSet/?url=http://loinc.org/vs/LL1012-5"
 
-* item[=].item[+].linkId = "1.2"
+* item[=].item[+].linkId = "1.3"
 * item[=].item[=].text = "Comments on the progress of the exercises/description of sensation"
 * item[=].item[=].type = #text
 
 
 // 2. Übung
 * item[=].item[+].linkId = "2.1"
+* item[=].item[=].definition = "http://snomed.info/sct"
+* item[=].item[=].code = #282961006
+* item[=].item[=].text = "Squats"
+* item[=].item[=].type = #display
+
+* item[=].item[+].linkId = "2.2"
 * item[=].item[=].definition = "http://loinc.org/rdf"
 * item[=].item[=].code = #28978002
 * item[=].item[=].text = "Post-exercise state"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerValueSet = "https://fhir.loinc.org/ValueSet/?url=http://loinc.org/vs/LL1012-5"
 
-* item[=].item[+].linkId = "2.2"
+* item[=].item[+].linkId = "2.3"
 * item[=].item[=].text = "Comments on the progress of the exercises/description of sensation"
 * item[=].item[=].type = #text
 
 
 // 3. Übung
 * item[=].item[+].linkId = "3.1"
+* item[=].item[=].definition = "http://snomed.info/sct"
+* item[=].item[=].code = #300648001
+* item[=].item[=].text = "Rides a bike"
+* item[=].item[=].type = #display
+
+* item[=].item[+].linkId = "3.2"
 * item[=].item[=].definition = "http://loinc.org/rdf"
 * item[=].item[=].code = #28978002
 * item[=].item[=].text = "Post-exercise state"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerValueSet = "https://fhir.loinc.org/ValueSet/?url=http://loinc.org/vs/LL1012-5"
 
-* item[=].item[+].linkId = "3.2"
+* item[=].item[+].linkId = "3.3"
 * item[=].item[=].text = "Comments on the progress of the exercises/description of sensation"
 * item[=].item[=].type = #text
 
@@ -90,25 +108,31 @@ InstanceOf: QuestionnaireResponse
 
 * item[0].linkId = "1"
 * item[=].item[0].linkId = "1.1"
+* item[=].item[=].text = "Jumping"
+* item[=].item[+].linkId = "1.2"
 * item[=].item[=].text = "Post-exercise state"
 * item[=].item[=].answer.valueCoding.system = "https://fhir.loinc.org/ValueSet/?url=http://loinc.org/vs/LL1012-5"
 * item[=].item[=].answer.valueCoding.code = #LA8967-7
 * item[=].item[=].answer.valueCoding.display = "Good"
-* item[=].item[+].linkId = "1.2"
+* item[=].item[+].linkId = "1.3"
 * item[=].item[=].text = "Übung war okey."
 
 * item[=].item[+].linkId = "2.1"
+* item[=].item[=].text = "Squats"
+* item[=].item[+].linkId = "2.2"
 * item[=].item[=].text = "Post-exercise state"
 * item[=].item[=].answer.valueCoding.system = "https://fhir.loinc.org/ValueSet/?url=http://loinc.org/vs/LL1012-5"
 * item[=].item[=].answer.valueCoding.code = #LA8969-3
 * item[=].item[=].answer.valueCoding.display = "Poor"
-* item[=].item[+].linkId = "2.2"
+* item[=].item[+].linkId = "2.3"
 * item[=].item[=].text = "Habe Schmerzen gehabt."
 
 * item[=].item[+].linkId = "3.1"
+* item[=].item[=].text = "Rides a bike"
+* item[=].item[+].linkId = "3.2"
 * item[=].item[=].text = "Post-exercise state"
 * item[=].item[=].answer.valueCoding.system = "https://fhir.loinc.org/ValueSet/?url=http://loinc.org/vs/LL1012-5"
 * item[=].item[=].answer.valueCoding.code = #LA9206-9
 * item[=].item[=].answer.valueCoding.display = "Excellent"
-* item[=].item[+].linkId = "3.2"
+* item[=].item[+].linkId = "3.3"
 * item[=].item[=].text = "Es ist sehr gut gelaufen."
