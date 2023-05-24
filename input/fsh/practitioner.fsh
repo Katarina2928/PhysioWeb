@@ -154,3 +154,198 @@ Description: "An example of a practitioner from PhysioWebPatient."
 * communication.coding.code = #de-AT
 * communication.coding.display = "German (Austria)"
 
+
+Instance: PractitionerExample3
+InstanceOf: PhysioWebPractitioner
+Description: "An example of a practitioner from PhysioWebPatient."
+
+* identifier[socialSecurityNumber].use = #usual
+* identifier[socialSecurityNumber].type.coding.system = "http://terminology.hl7.org/CodeSystem/v2-0203" (exactly)
+* identifier[socialSecurityNumber].type.coding.code = #SS (exactly) //Resolved value "HL7V2" is not a valid URI.
+* identifier[socialSecurityNumber].type.coding.display = "Social Security Number" (exactly)
+//* identifier[socialSecurityNumber].system = "urn:oid:1.2.36.146.595.217.0.1"
+* identifier[socialSecurityNumber].value = "3784512"
+* identifier[socialSecurityNumber].period.start = "2001-05-06"
+* identifier[socialSecurityNumber].assigner.display = "Dachverband der österreichischen Sozialversicherungsträger"
+
+
+* identifier[localPatientId].use = #secondary
+* identifier[localPatientId].type.coding.system = "http://terminology.hl7.org/CodeSystem/v2-0203" (exactly)
+* identifier[localPatientId].type.coding.code = #CAAI (exactly)
+* identifier[localPatientId].type.coding.display = "Consumer Application Account Identifier" (exactly)
+//* identifier[localPatientId].system = "urn:oid:1.3.4.5.5.6.7..8"
+* identifier[localPatientId].value = "3"
+* identifier[localPatientId].period.start = "2001-05-06"
+* identifier[localPatientId].assigner.display = "Application Identifier."
+
+* active = true
+
+* name
+  * given[0] = "Lori"
+  * family = "Paskal"
+
+* telecom[0].use = #home
+* telecom[+].system = #phone
+* telecom[=].value = "(03) 5555 6473 56"
+* telecom[=].use = #mobile
+* telecom[=].rank = 1
+* telecom[+].system = #phone
+* telecom[=].value = "(03) 3410 5613 23"
+* telecom[=].use = #work
+* telecom[=].rank = 2
+
+* gender = #female
+
+* birthDate = "1975-02-05"
+
+* address.use = #home
+* address.type = #both
+* address.text = "Gablenzg. 94, 1160 Wien" 
+* address.line = "Gablenzg. 94"
+* address.city = "Vienna"
+* address.district = "Austria"
+* address.state = "Vienna"
+* address.postalCode = "1160"
+* address.period.start = "2006-02-25"
+
+* qualification.identifier.system = "http://uni.org/UniversityIdentifier"
+* qualification.identifier.value = "649732"
+* qualification.code.coding.system = "http://snomed.info/sct"
+* qualification.code.coding.code = #36682004
+* qualification.code.coding.display = "Physiotherapist"
+* qualification.issuer.display = "FH Joanneum Graz"
+
+* communication.coding.system = "urn:ietf:bcp:47"
+* communication.coding.code = #de-AT
+* communication.coding.display = "German (Austria)"
+
+
+Instance: PractitionerExample7
+InstanceOf: PhysioWebPractitioner
+Description: "An example of a practitioner from PhysioWebPatient."
+
+* identifier[socialSecurityNumber].use = #usual
+* identifier[socialSecurityNumber].type.coding.system = "http://terminology.hl7.org/CodeSystem/v2-0203" (exactly)
+* identifier[socialSecurityNumber].type.coding.code = #SS (exactly) //Resolved value "HL7V2" is not a valid URI.
+* identifier[socialSecurityNumber].type.coding.display = "Social Security Number" (exactly)
+//* identifier[socialSecurityNumber].system = "urn:oid:1.2.36.146.595.217.0.1"
+* identifier[socialSecurityNumber].value = "7784512"
+* identifier[socialSecurityNumber].period.start = "2014-05-06"
+* identifier[socialSecurityNumber].assigner.display = "Dachverband der österreichischen Sozialversicherungsträger"
+
+
+* identifier[localPatientId].use = #secondary
+* identifier[localPatientId].type.coding.system = "http://terminology.hl7.org/CodeSystem/v2-0203" (exactly)
+* identifier[localPatientId].type.coding.code = #CAAI (exactly)
+* identifier[localPatientId].type.coding.display = "Consumer Application Account Identifier" (exactly)
+//* identifier[localPatientId].system = "urn:oid:1.3.4.5.5.6.7..8"
+* identifier[localPatientId].value = "7"
+* identifier[localPatientId].period.start = "2014-11-06"
+* identifier[localPatientId].assigner.display = "Application Identifier."
+
+* active = true
+
+* name
+  * given[0] = "Paul"
+  * family = "Hanke"
+
+* telecom[0].use = #home
+* telecom[+].system = #phone
+* telecom[=].value = "(03) 4444 6473 56"
+* telecom[=].use = #mobile
+* telecom[=].rank = 1
+* telecom[+].system = #phone
+* telecom[=].value = "(03) 1934 5613 23"
+* telecom[=].use = #work
+* telecom[=].rank = 2
+
+* gender = #female
+
+* birthDate = "1983-05-13"
+
+* address.use = #home
+* address.type = #both
+* address.text = "Weißgasse 13, 1170 Wien" 
+* address.line = "Weißgasse 13"
+* address.city = "Vienna"
+* address.district = "Austria"
+* address.state = "Vienna"
+* address.postalCode = "1170"
+* address.period.start = "2017-09-14"
+
+* qualification.identifier.system = "http://uni.org/UniversityIdentifier"
+* qualification.identifier.value = "649732"
+* qualification.code.coding.system = "http://snomed.info/sct"
+* qualification.code.coding.code = #36682004
+* qualification.code.coding.display = "Physiotherapist"
+* qualification.issuer.display = "FH Joanneum Graz"
+
+* communication.coding.system = "urn:ietf:bcp:47"
+* communication.coding.code = #de-AT
+* communication.coding.display = "German (Austria)"
+
+
+
+Instance: PractitionerExample8
+InstanceOf: PhysioWebPractitioner
+Description: "An example of a practitioner from PhysioWebPatient."
+
+* identifier[socialSecurityNumber].use = #usual
+* identifier[socialSecurityNumber].type.coding.system = "http://terminology.hl7.org/CodeSystem/v2-0203" (exactly)
+* identifier[socialSecurityNumber].type.coding.code = #SS (exactly) //Resolved value "HL7V2" is not a valid URI.
+* identifier[socialSecurityNumber].type.coding.display = "Social Security Number" (exactly)
+//* identifier[socialSecurityNumber].system = "urn:oid:1.2.36.146.595.217.0.1"
+* identifier[socialSecurityNumber].value = "8784512"
+* identifier[socialSecurityNumber].period.start = "2000-07-21"
+* identifier[socialSecurityNumber].assigner.display = "Dachverband der österreichischen Sozialversicherungsträger"
+
+
+* identifier[localPatientId].use = #secondary
+* identifier[localPatientId].type.coding.system = "http://terminology.hl7.org/CodeSystem/v2-0203" (exactly)
+* identifier[localPatientId].type.coding.code = #CAAI (exactly)
+* identifier[localPatientId].type.coding.display = "Consumer Application Account Identifier" (exactly)
+//* identifier[localPatientId].system = "urn:oid:1.3.4.5.5.6.7..8"
+* identifier[localPatientId].value = "8"
+* identifier[localPatientId].period.start = "2022-02-13"
+* identifier[localPatientId].assigner.display = "Application Identifier."
+
+* active = true
+
+* name
+  * given[0] = "Adel"
+  * family = "Biber"
+
+* telecom[0].use = #home
+* telecom[+].system = #phone
+* telecom[=].value = "(03) 8888 6473 56"
+* telecom[=].use = #mobile
+* telecom[=].rank = 1
+* telecom[+].system = #phone
+* telecom[=].value = "(03) 2036 5613 23"
+* telecom[=].use = #work
+* telecom[=].rank = 2
+
+* gender = #female
+
+* birthDate = "2000-02-29"
+
+* address.use = #home
+* address.type = #both
+* address.text = "Hormayrgasse 18, 1170 Wien" 
+* address.line = "Hormayrgasse 18"
+* address.city = "Vienna"
+* address.district = "Austria"
+* address.state = "Vienna"
+* address.postalCode = "1170"
+* address.period.start = "2007-12-01"
+
+* qualification.identifier.system = "http://uni.org/UniversityIdentifier"
+* qualification.identifier.value = "649732"
+* qualification.code.coding.system = "http://snomed.info/sct"
+* qualification.code.coding.code = #36682004
+* qualification.code.coding.display = "Physiotherapist"
+* qualification.issuer.display = "FH Joanneum Graz"
+
+* communication.coding.system = "urn:ietf:bcp:47"
+* communication.coding.code = #de-AT
+* communication.coding.display = "German (Austria)"
